@@ -6,6 +6,7 @@ public class Bank {
 
     private String name;
     private Set<Account> accounts;
+    private Set<Client> clients;
 
     public Bank(){}
 
@@ -20,6 +21,22 @@ public class Bank {
 
     public Set<Account> getAccounts() {
         return accounts;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public void setClients(Set<Client> clients) {
+        this.clients = clients;
+    }
+
+    public Set<Client> getClients() {
+        return clients;
     }
 
 }

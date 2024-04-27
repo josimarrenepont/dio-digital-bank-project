@@ -1,9 +1,10 @@
 package contracts;
 
+import exceptions.InsufficientFundsException;
 import model.Account;
 
 public interface IAccount {
-    void withdraw(Double value);
+    void withdraw(Double value) throws InsufficientFundsException;
 
     void balance(Double value);
 
@@ -13,7 +14,7 @@ public interface IAccount {
 
     void deposit(Double value);
 
-    void transfer(Double value, Account destinationAccount, Double transferRate);
+    void transfer(Double value, Account destinationAccount) throws InsufficientFundsException;
 
-    void transfer(Double value, Account destinationAccount);
+    Double getDeposit(Double value);
 }

@@ -36,7 +36,7 @@ public class Main {
                 account.deposit(300.0); // Realiza um depósito inicial
                 // Realiza um saque de 50.0
                 try {
-                    account.withdraw(350.0);
+                    account.withdraw(150.0);
                 } catch (InsufficientFundsException e) {
                     System.out.println(e.getMessage());
                 }
@@ -50,7 +50,7 @@ public class Main {
 
                     @Override
                     public Double getDeposit(Double value) {
-                        return 700.0;
+                        return 300.0;
                     }
                 };
                 bank.getAccounts().add(account);

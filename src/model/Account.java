@@ -60,7 +60,7 @@ public abstract class Account {
         System.out.println("Agencia: " + this.getAgency());
         System.out.println("Número: " + this.getNumberAccount());
         System.out.println("Depósito: " + getDeposit(0.0)); // Valor do depósito inicial
-        System.out.println("Saque: " + (balance - getDeposit(0.0))); // Valor do saque (saldo atual - saldo inicial)
+        System.out.println("Saque: " + String.format("%.2f", (getBalance() - getDeposit((0.0))))); // Valor do saque (saldo atual - saldo inicial)
         System.out.println("Saldo Após o Saque: " + this.getBalance());
         System.out.println("Limite de Saque Diário: R$ " + (this.getDailyWithdrawalLimit()));
         System.out.println("Taxa de Transferência: R$ " + this.getTransferRate());
@@ -96,8 +96,9 @@ public abstract class Account {
         if (value > balance) {
             throw new InsufficientFundsException("Saldo insuficiente para transferência: " + balance);
         }
-        withdraw(value); // Subtrai o valor da transferência do saldo da conta de origem
-        destinationAccount.deposit(value + transferRate);
+        withdraw(value + transferRate); // Subtrai o valor da transferência do saldo da conta de origem
+        destinationAccount.deposit(value);
+
     }
 
     public abstract Double getDeposit(Double value);

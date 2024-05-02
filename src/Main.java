@@ -34,11 +34,11 @@ public class Main {
 
                 // Realiza operações bancárias para a conta corrente
                 account.deposit(300.0); // Realiza um depósito inicial
-                // Realiza um saque de 50.0
+                // Realiza um saque de 150.0
                 try {
                     account.withdraw(150.0);
                 } catch (InsufficientFundsException e) {
-                    System.out.println(e.getMessage());
+                    System.out.println("Error: " + e.getMessage());
                 }
             } else {
                 Set<Client> clients = createClientSet(clientDto);
@@ -61,7 +61,7 @@ public class Main {
                 try {
                     account.transfer(100.0, bank.getAccounts().iterator().next());
                 } catch (InsufficientFundsException e) {
-                    System.out.println(e.getMessage());
+                    System.out.println("Error: " + e.getMessage());
                 }
             }
             // Exibe o extrato da conta

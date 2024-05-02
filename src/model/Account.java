@@ -51,8 +51,14 @@ public abstract class Account {
         return transferRate;
     }
 
-    public Set<Account> getAccounts(Class<SavingsAccount> savingsAccountClass) {
-        return accounts;
+    public Set<Account> getAccounts(Class<? extends Account> accountClass) {
+        Set<Account> filteredAccounts = new HashSet<>();
+        for(Account account : accounts){
+            if(accountClass.isInstance(account)) {
+                filteredAccounts.add(account);
+            }
+        }
+        return filteredAccounts;
     }
 
     public void printStatement() {
@@ -91,14 +97,12 @@ public abstract class Account {
         dailyWithdrawalLimit -= withdraw;
     }
 
-
     public void transfer(Double value, Account destinationAccount) throws InsufficientFundsException {
         if (value > balance) {
             throw new InsufficientFundsException("Saldo insuficiente para transferência: " + balance);
         }
         withdraw(value + transferRate); // Subtrai o valor da transferência do saldo da conta de origem
         destinationAccount.deposit(value);
-
     }
 
     public abstract Double getDeposit(Double value);
@@ -107,11 +111,11 @@ public abstract class Account {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Account account)) return false;
-        return Objects.equals(getBalance(), account.getBalance()) && Objects.equals(getNumberAccount(), account.getNumberAccount()) && Objects.equals(getAgency(), account.getAgency()) && Objects.equals(getClient(), account.getClient());
+        return Objects.equals(getBalance(), account.getBalance()) && Objects.equals(getNumberAccount(), account.getNumberAccount()) && Objects.equals(getAgency(), account.getAgency()) && Objects.equals(getClient(), account.getClient()) && Objects.equals(accounts, account.accounts) && Objects.equals(getDailyWithdrawalLimit(), account.getDailyWithdrawalLimit()) && Objects.equals(getTransferRate(), account.getTransferRate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getBalance(), getNumberAccount(), getAgency());
+        return Objects.hash(getBalance(), getNumberAccount(), getAgency(), getClient(), accounts, getDailyWithdrawalLimit(), getTransferRate());
     }
 }

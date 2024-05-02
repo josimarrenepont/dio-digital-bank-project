@@ -1,20 +1,20 @@
-package contracts;
+    package contracts;
 
-import exceptions.InsufficientFundsException;
-import model.Account;
+    import exceptions.InsufficientFundsException;
+    import model.Account;
 
-public interface IAccount {
-    void withdraw(Double value) throws InsufficientFundsException;
+    public interface IAccount {
+        void withdraw(Double value) throws InsufficientFundsException;
 
-    void balance(Double value);
+        void balance(Double value);
 
-    void numberAccount(String account);
+        void numberAccount(String account);
 
-    void printStatement();
+        void printStatement();
 
-    void deposit(Double value);
+        void deposit(Double value);
 
-    void transfer(Double value, Account destinationAccount) throws InsufficientFundsException;
+        void transfer(Double value, Account destinationAccount) throws InsufficientFundsException;
 
-    Double getDeposit(Double value);
-}
+        Double getDeposit(Double value);
+    }
